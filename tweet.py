@@ -12,6 +12,10 @@ def get_one_tweet() -> tuple[str, int]:
     return one_tweet, idx
 
 
+class MaxRetriesExceededError(Exception):
+    pass
+
+
 def make_tweet():
     consumer_key = sys.argv[1]
     consumer_secret = sys.argv[2]
