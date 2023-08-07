@@ -6,6 +6,7 @@ import time
 
 
 def get_one_tweet() -> tuple[str, int]:
+    """ツイート一覧からランダムに 1 ツイートを取得し、index とともに返す"""
     f = open("tweets.txt", "r", encoding="utf-8")
     lines = f.readlines()
     idx = randint(0, len(lines) - 1)
