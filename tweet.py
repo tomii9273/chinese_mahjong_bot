@@ -1,14 +1,15 @@
+from __future__ import annotations
 import tweepy
 from random import randint
 import sys
 
 
-def get_one_tweet() -> str:
+def get_one_tweet() -> tuple[str, int]:
     f = open("tweets.txt", "r", encoding="utf-8")
     lines = f.readlines()
     idx = randint(0, len(lines) - 1)
     one_tweet = lines[idx].replace("\n", "")
-    return one_tweet
+    return one_tweet, idx
 
 
 def make_tweet():
@@ -23,7 +24,7 @@ def make_tweet():
         access_token=access_token,
         access_token_secret=access_token_secret,
     )
-    tweet = get_one_tweet()
+    tweet, idx = get_one_tweet()
     client.create_tweet(text=tweet)
 
 
