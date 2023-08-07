@@ -30,10 +30,10 @@ def make_tweet():
         access_token_secret=access_token_secret,
     )
 
-    ng_idx = [-1]
+    ng_idx = [-1]  # 一度試して失敗したツイート番号を入れる
     idx = -1
 
-    max_retries = 5
+    max_retries = 5  # 5 回試せば 12 時間以内 (直近 4 ツイート) の重複制限は回避可能
 
     for t in range(max_retries):
         while idx in ng_idx:
