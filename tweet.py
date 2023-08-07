@@ -30,12 +30,14 @@ def make_tweet():
         access_token_secret=access_token_secret,
     )
 
-    ng_idx = []
+    ng_idx = [-1]
+    idx = -1
 
     max_retries = 5
 
     for t in range(max_retries):
-        tweet, idx = get_one_tweet()
+        while idx in ng_idx:
+            tweet, idx = get_one_tweet()
         try:
             client.create_tweet(text=tweet)
             return
