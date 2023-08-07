@@ -2,6 +2,7 @@ from __future__ import annotations
 import tweepy
 from random import randint
 import sys
+import time
 
 
 def get_one_tweet() -> tuple[str, int]:
@@ -28,8 +29,23 @@ def make_tweet():
         access_token=access_token,
         access_token_secret=access_token_secret,
     )
-    tweet, idx = get_one_tweet()
-    client.create_tweet(text=tweet)
+
+    ng_idx = []
+
+    max_retries = 5
+
+    for t in range(max_retries):
+        tweet, idx = get_one_tweet()
+        try:
+            client.create_tweet(text=tweet)
+            return
+        except tweepy.TweepyException as e:
+            print(f"tweet {t} failed (idx: {idx})")
+            print(f"reason: {e}")
+            ng_idx.append(idx)
+            time.sleep(1)
+
+    raise MaxRetriesExceededError()
 
 
 if __name__ == "__main__":
