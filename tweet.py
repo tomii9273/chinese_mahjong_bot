@@ -1,6 +1,7 @@
-import tweepy
-from random import randint
 import sys
+from random import randint
+
+import tweepy
 
 
 def get_one_tweet() -> str:
