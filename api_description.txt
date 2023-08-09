@@ -1,0 +1,2 @@
+自動投稿ボットの開発と運用を行う。具体的には、中国麻雀ゲームの普及とルール習得補助のために、中国麻雀で用いられる用語およびその説明を定期的に投稿する。また、そのことを通して私のプログラミング・エンジニアリングスキルを向上させる。
+Develop and operate an automated posting bot. Specifically, to promote the Chinese Mahjong game and assist in learning the rules, terms used in Chinese Mahjong and their explanations will be posted on a regular basis. In addition, I will improve my programming and engineering skills by doing so.

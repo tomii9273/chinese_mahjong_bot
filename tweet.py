@@ -1,8 +1,10 @@
 from __future__ import annotations
-import tweepy
-from random import randint
+
 import sys
 import time
+from random import randint
+
+import tweepy
 
 
 def get_one_tweet() -> tuple[str, int]:
