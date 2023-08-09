@@ -15,8 +15,6 @@
     },
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
-    "terminal.integrated.scrollback": 200000,
-    "python.languageServer": "Pylance",
     "python.analysis.extraPaths" : [
         ".venv/Lib/site-packages"
     ],
