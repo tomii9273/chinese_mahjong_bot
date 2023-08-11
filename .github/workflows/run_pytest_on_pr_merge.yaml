@@ -1,6 +1,9 @@
 name: Run pytest on PR merge
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     types:
       - closed
@@ -10,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     # Only run this job if the PR was merged into the main branch
-    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+    if: github.event.pull_request.merged == true
 
     steps:
       - uses: actions/checkout@v3
