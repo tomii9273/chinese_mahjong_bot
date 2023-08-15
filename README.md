@@ -5,8 +5,8 @@ https://twitter.com/ChineseMJBot
 
 ## 関連リンク
 
-- WikiPedia 中国麻雀: https://ja.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E9%BA%BB%E9%9B%80
-- 作成者 Twitter: https://twitter.com/Tomii9273
+- Wikipedia 中国麻雀: https://ja.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E9%BA%BB%E9%9B%80
+- 作成者 X (Twitter): https://twitter.com/Tomii9273
 
 ## システム構成図
 
