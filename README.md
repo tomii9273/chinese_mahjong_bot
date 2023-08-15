@@ -1,6 +1,6 @@
 # 中国麻雀役 Bot
 
-中国麻雀 (中国麻将) の役などについて、自動で定期的に投稿を行う X (Twitter) の bot を管理しています。
+中国麻雀 (中国麻将) の役などについて、自動で定期的に投稿を行う X (Twitter) の Bot を管理しています。
 https://twitter.com/ChineseMJBot
 
 ## 関連リンク
