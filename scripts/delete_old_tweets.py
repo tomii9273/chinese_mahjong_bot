@@ -17,13 +17,13 @@ auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
 # 対象のツイートIDを読み込む
-with open("../tweet_archive/old_tweets_until_2022.txt", "r", encoding="utf-8") as f:
+with open("../tweet_archive/old_tweets_since_202301_until_202303.txt", "r", encoding="utf-8") as f:
     tweet_ids = [line.strip() for line in f.readlines()]
 
 print(tweet_ids[:10])
 print("len(tweet_ids):", len(tweet_ids))
 
-start_ind = 20801  # 途中で打ち切った場合に使う、開始インデックス
+start_ind = 0  # 途中で打ち切った場合に使う、開始インデックス
 
 # ツイートを削除
 for ind, tweet_id in enumerate(tweet_ids):

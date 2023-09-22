@@ -19,13 +19,13 @@ print(tweets_data[:2])
 
 # 各ツイートからIDと日時を取り出す
 
-with open("../tweet_archive/old_tweets_until_2022.txt", "w", encoding="utf-8") as f:
+with open("../tweet_archive/old_tweets_since_202301_until_202303.txt", "w", encoding="utf-8") as f:
     for tweet in tweets_data:
         # print(tweet.keys())
         tweet_id = tweet["tweet"]["id"]
         first_char = tweet["tweet"]["full_text"][0]
         created_at = datetime.strptime(tweet["tweet"]["created_at"], "%a %b %d %H:%M:%S %z %Y")
         # print(f"Tweet ID: {tweet_id}, Created At: {created_at}")
-        if created_at.year <= 2022 and first_char == "【":
+        if created_at.year == 2023 and created_at.month <= 3 and first_char == "【":
             print(f"Tweet ID: {tweet_id}, Created At: {created_at}")
             f.write(f"{tweet_id}\n")
