@@ -1,4 +1,4 @@
-# 古いツイート (2022 年以前かつ「【」で始まる) の ID を取得するスクリプト
+# 古いツイート (2023 年 1 ～ 3 月かつ「【」で始まる) の ID を取得するスクリプト
 
 import json
 from datetime import datetime
