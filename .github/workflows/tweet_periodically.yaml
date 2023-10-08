@@ -2,7 +2,7 @@ name: tweet_periodically
 on:
   schedule:
     # 日本時間でも UTC でも (3 の倍数) 時 00 分に実行
-    - cron: '0 */3 * * *'
+    - cron: "0 */3 * * *"
 
 jobs:
   build:
@@ -14,7 +14,7 @@ jobs:
       - name: Set up Python 3.10
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: "3.10"
 
       - name: Install dependencies
         run: |
@@ -25,4 +25,4 @@ jobs:
         run: |
           python tweet.py ${{secrets.CONSUMER_KEY}} ${{secrets.CONSUMER_SECRET}} ${{secrets.ACCESS_TOKEN}} ${{secrets.ACCESS_TOKEN_SECRET}}
         env:
-          TZ: 'Asia/Tokyo'
+          TZ: "Asia/Tokyo"
