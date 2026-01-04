@@ -34,7 +34,8 @@ def make_tweet():
     ng_idx = [-1]  # 一度試して失敗したツイート番号を入れる
     idx = -1
 
-    max_retries = 5  # 5 回試せば 12 時間以内 (直近 4 ツイート) の重複制限は回避可能
+    max_retries = 20
+    # 5回ほど試せば12時間以内 (直近4ツイート) の重複制限は高確率で回避可能だが、2025年12月頃から失敗 (403エラー。X側のスパム対策強化？) が増えたので20回にした
 
     for t in range(max_retries):
         while idx in ng_idx:
