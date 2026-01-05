@@ -34,20 +34,26 @@ def make_tweet():
     ng_idx = [-1]  # 一度試して失敗したツイート番号を入れる
     idx = -1
 
-    max_retries = 20
-    # 5回ほど試せば12時間以内 (直近4ツイート) の重複制限は高確率で回避可能だが、2025年12月頃から失敗 (403エラー。X側のスパム対策強化？) が増えたので20回にした
+    n_set = 5
+    n_retry = 5
+    # 5回試すのは、12時間以内 (直近4ツイート) の重複制限を確実に回避するため。
+    # 2025年12月頃から失敗 (403エラー。X側のスパム対策強化？) が増えたので回数を増やしたがそれでも連続で失敗したので、2分間空けて5セット試すことにした。
 
-    for t in range(max_retries):
-        while idx in ng_idx:
-            tweet, idx = get_one_tweet()
-        try:
-            client.create_tweet(text=tweet)
-            return
-        except tweepy.TweepyException as e:
-            print(f"tweet {t} failed (idx: {idx})")
-            print(f"reason: {e}")
-            ng_idx.append(idx)
-            time.sleep(1)
+    for s in range(n_set):
+        print(f"set {s} start")
+        for t in range(n_retry):
+            while idx in ng_idx:
+                tweet, idx = get_one_tweet()
+            try:
+                client.create_tweet(text=tweet)
+                print(f"set {s} tweet {t} succeeded (idx: {idx})")
+                return
+            except tweepy.TweepyException as e:
+                print(f"set {s} tweet {t} failed (idx: {idx})")
+                print(f"reason: {e}")
+                ng_idx.append(idx)
+                time.sleep(1)
+        time.sleep(120)
 
     raise MaxRetriesExceededError()
 
