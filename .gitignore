@@ -1,6 +1,7 @@
 ignore
 tweet_archive
 .venv_new
+security_report/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
