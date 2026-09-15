@@ -1,18 +1,18 @@
 name: tweet_periodically
 on:
   schedule:
-    # 日本時間でも UTC でも (3 の倍数) 時 00 分に実行
-    - cron: "0 */3 * * *"
+    # 日本時間でも UTC でも (3 の倍数) 時 17 分に実行 (00 分は集中するので回避している)
+    - cron: "17 */3 * * *"
 
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Set up Python 3.11
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: "3.11"
 
