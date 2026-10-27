@@ -3,21 +3,27 @@
 import sys
 import time
 
-import tweepy
+import requests
+from requests_oauthlib import OAuth1Session
 
-# Twitter APIの認証情報
+# X API の認証情報
 consumer_key = sys.argv[1]  # API Key
 consumer_secret = sys.argv[2]  # API Key Secret
 access_token = sys.argv[3]
 access_token_secret = sys.argv[4]
 
-# TweepyでAPIオブジェクトを作成
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_token, access_token_secret)
-api = tweepy.API(auth)
+# OAuth 1.0a で認証するセッションを作成
+session = OAuth1Session(
+    consumer_key,
+    client_secret=consumer_secret,
+    resource_owner_key=access_token,
+    resource_owner_secret=access_token_secret,
+)
 
 # 対象のツイートIDを読み込む
-with open("../tweet_archive/old_tweets_since_202301_until_202303.txt", "r", encoding="utf-8") as f:
+with open(
+    "../tweet_archive/old_tweets_since_202301_until_202303.txt", "r", encoding="utf-8"
+) as f:
     tweet_ids = [line.strip() for line in f.readlines()]
 
 print(tweet_ids[:10])
@@ -31,8 +37,12 @@ for ind, tweet_id in enumerate(tweet_ids):
         continue
     try:
         print(f"Deleting tweet ID {tweet_id} (index {ind})")
-        api.destroy_status(tweet_id)
+        response = session.post(
+            f"https://api.twitter.com/1.1/statuses/destroy/{tweet_id}.json",
+            timeout=60,
+        )
+        response.raise_for_status()
         time.sleep(0.5)  # APIの制限を避けるための遅延
-    except tweepy.TweepyException as e:
+    except requests.exceptions.RequestException as e:
         print(f"Error: {e}")
         sys.exit()

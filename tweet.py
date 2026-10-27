@@ -2,7 +2,9 @@ import sys
 import time
 from random import randint
 
-import tweepy
+import requests
+
+from x_client import XClient
 
 
 def get_one_tweet() -> tuple[str, int]:
@@ -24,7 +26,7 @@ def make_tweet():
     access_token = sys.argv[3]
     access_token_secret = sys.argv[4]
 
-    client = tweepy.Client(
+    client = XClient(
         consumer_key=consumer_key,
         consumer_secret=consumer_secret,
         access_token=access_token,
@@ -48,7 +50,7 @@ def make_tweet():
                 client.create_tweet(text=tweet)
                 print(f"set {s} tweet {t} succeeded (idx: {idx})")
                 return
-            except tweepy.TweepyException as e:
+            except requests.exceptions.RequestException as e:
                 print(f"set {s} tweet {t} failed (idx: {idx})")
                 print(f"reason: {e}")
                 ng_idx.append(idx)
